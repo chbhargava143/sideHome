@@ -128,12 +128,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BgX-mR-da0">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Tvs-1U-Xv3"/>
                         <barButtonItem key="leftBarButtonItem" image="line.horizontal.3" catalog="system" id="G53-GO-RRY">
                             <connections>
                                 <action selector="didTapSideMenu:" destination="A6E-XC-bdI" id="b59-MD-8Tj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="Irb-L7-xfr" kind="show" identifier="detailsVC" id="rsT-lL-9Hp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dps-RQ-Eox" sceneMemberID="firstResponder"/>
             </objects>
@@ -171,24 +175,11 @@
                         <viewLayoutGuide key="safeArea" id="n2A-x3-vPc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="jQr-6P-5Dp">
-                        <leftBarButtonItems>
-                            <barButtonItem image="line.horizontal.3" catalog="system" id="EGE-Ue-pIE">
-                                <connections>
-                                    <action selector="didTapSideMenu:" destination="Irb-L7-xfr" id="HoI-9Y-xB8"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="arrow.backward" catalog="system" id="WNV-dG-Qql">
-                                <connections>
-                                    <action selector="didTapBackVc:" destination="Irb-L7-xfr" id="u3c-aQ-Qp2"/>
-                                </connections>
-                            </barButtonItem>
-                        </leftBarButtonItems>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="jQr-6P-5Dp"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dPJ-Bi-vOp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6171" y="-956"/>
+            <point key="canvasLocation" x="4362" y="-281"/>
         </scene>
         <!--Green Vc-->
         <scene sceneID="NRc-DI-T8n">
@@ -267,28 +258,8 @@
             </objects>
             <point key="canvasLocation" x="5260.8695652173919" y="484.82142857142856"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="WL6-3E-OHo">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OW1-AX-93l" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="nMa-Dj-6Sx"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gFX-SM-vWt">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Irb-L7-xfr" kind="relationship" relationship="rootViewController" id="idC-Hq-yve"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sxg-R9-D9Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4339" y="-741"/>
-        </scene>
     </scenes>
     <resources>
-        <image name="arrow.backward" catalog="system" width="128" height="98"/>
         <image name="line.horizontal.3" catalog="system" width="128" height="64"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

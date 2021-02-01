@@ -12,6 +12,7 @@ class Preferences {
     static let shared = Preferences()
     var enableTransitionAnimation = false
 }
+
 class menuControl: UIViewController ,UITableViewDelegate,UITableViewDataSource{
     var menuText = ["Home","Settings","Log out"]
     @IBOutlet weak var selectionMenuTrailingConstraint: NSLayoutConstraint!
@@ -19,13 +20,19 @@ class menuControl: UIViewController ,UITableViewDelegate,UITableViewDataSource{
     @IBOutlet weak var topView:UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         SideMenuController.preferences.basic.menuWidth = 280
-        SideMenuController.preferences.basic.statusBarBehavior = .hideOnMenu
+        
         SideMenuController.preferences.basic.direction = .left
         SideMenuController.preferences.basic.enablePanGesture = true
+        SideMenuController.preferences.basic.position = .above
         SideMenuController.preferences.basic.supportedOrientations = .portrait
         SideMenuController.preferences.basic.shouldRespectLanguageDirection = true
-        
+        if #available(iOS 14.0, *) {
+            tblView.selectionFollowsFocus = false
+        } else {
+            // Fallback on earlier versions
+        }
         topView.layer.cornerRadius = 20
         tblView.dataSource = self
         tblView.delegate = self
@@ -56,30 +63,17 @@ class menuControl: UIViewController ,UITableViewDelegate,UITableViewDataSource{
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//
-//        let selecetMenu = self.menuText[indexPath.row]
-//
-//        if selecetMenu == "Home"{
-//            let stBoard = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "ViewController" ) as! ViewController
-//            self.navigationController?.pushViewController(stBoard, animated: true)
-//            // sideMenuController?.hideMenu()
-//        }else if selecetMenu == "Settings"{
-//            let stBoard = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "greenVc") as! greenVc
-//            self.navigationController?.pushViewController(stBoard, animated: true)
-//           // sideMenuController?.hideMenu()
-//        } else if selecetMenu == "Log out"{
-//            let stBoard = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "blueVc") as! blueVc
-//            self.navigationController?.pushViewController(stBoard, animated: true)
-//            //sideMenuController?.hideMenu()
-//        }
-//        // Or This
+
+      //  This is to goto next ViewController.
          let row = indexPath.row
         sideMenuController?.setContentViewController(with: "\(row)", animated: Preferences.shared.enableTransitionAnimation)
         sideMenuController?.hideMenu()
 
         if let identifier = sideMenuController?.currentCacheIdentifier() {
             print("[Example] View Controller Cache Identifier: \(identifier)")
+            DispatchQueue.main.async {
+                self.tblView.reloadData()
+            }
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -96,6 +90,7 @@ class menuControl: UIViewController ,UITableViewDelegate,UITableViewDataSource{
     
 
 }
+
 extension menuControl: SideMenuControllerDelegate {
     func sideMenuController(_ sideMenuController: SideMenuController,
                             animationControllerFrom fromVC: UIViewController,

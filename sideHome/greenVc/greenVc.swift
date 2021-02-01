@@ -17,6 +17,7 @@ class greenVc: UIViewController {
     }
     @IBAction func didTapSideMenu(_ sender:Any){
         sideMenuController?.revealMenu()
+       // Preferences.shared.enableTransitionAnimation = (sender as AnyObject).isOn
     }
-
+    
 }

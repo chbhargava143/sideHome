@@ -17,6 +17,7 @@ class redvc: UIViewController {
     }
     @IBAction func didTapSideMenu(_ sender:Any){
         sideMenuController?.revealMenu()
+        
     }
-
+    
 }
